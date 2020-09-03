@@ -3,6 +3,6 @@
 	to-do list
 	==========
 
-	backup-restore
-	import excel untuk siswa baru
-	analisa kebutuhan pemilihan tahun ajaran dan sekolah saat login
+	- backup-restore
+	- import excel untuk siswa baru
+	- analisa kebutuhan pemilihan tahun ajaran dan sekolah saat login

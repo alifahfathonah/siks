@@ -232,6 +232,28 @@
           </ul>
         </li>
 
+        <!-- utility -->
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-tools nav-icon"></i>
+            <p>Utility<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?php echo site_url(); ?>t101_spp/laporan" class="nav-link">
+                <i class="fas fa-download nav-icon"></i>
+                <p>Backup</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo site_url(); ?>t103_nonrutin/laporan" class="nav-link">
+                <i class="fas fa-upload nav-icon"></i>
+                <p>Restore</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <!-- Login or logout -->
         <li class="nav-item">
           <?php if ($this->session->userdata("tahunajaran") != "") { ?>
