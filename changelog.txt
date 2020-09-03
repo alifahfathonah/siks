@@ -1,3 +1,8 @@
-12:04 AM 9/4/2020
 
-coba update auto-deployment
+	==========
+	to-do list
+	==========
+
+	backup-restore
+	import excel untuk siswa baru
+	analisa kebutuhan pemilihan tahun ajaran dan sekolah saat login
