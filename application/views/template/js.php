@@ -49,5 +49,14 @@
   })
 </script>
 
+<!-- bs-custom-file-input -->
+<script src="<?php echo base_url(); ?>assets/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>
+
 </body>
 </html>

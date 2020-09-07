@@ -240,13 +240,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo site_url(); ?>t101_spp/laporan" class="nav-link">
+              <a href="<?php echo site_url(); ?>backup" class="nav-link">
                 <i class="fas fa-download nav-icon"></i>
                 <p>Backup</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?php echo site_url(); ?>t103_nonrutin/laporan" class="nav-link">
+              <a href="<?php echo site_url(); ?>restore" class="nav-link">
                 <i class="fas fa-upload nav-icon"></i>
                 <p>Restore</p>
               </a>
