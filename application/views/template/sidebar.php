@@ -16,12 +16,12 @@
       </div>
       <div class="info">
         <!-- <a href="#" class="d-block"><?php //echo $namasekolah; ?>X</a> -->
-        <div class="row">
+        <!-- <div class="row"> -->
           <a href="#" class="d-block"><?php echo $this->session->userdata("namasekolah"); ?></a>
-        </div>
-        <div class="row">
+        <!-- </div> -->
+        <!-- <div class="row"> -->
           <a href="#" class="d-block"><?php echo $this->session->userdata("tahunajaran"); ?></a>
-        </div>
+        <!-- </div> -->
         <!-- <p><?php //echo $this->session->flashdata("tahunajaran"); ?></p> -->
       </div>
     </div>
@@ -34,7 +34,7 @@
 
         <!-- dashboard -->
         <!-- <li class="nav-item has-treeview menu-open"> -->
-        <li class="nav-item has-treeview">
+        <!-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -62,7 +62,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <!-- home-->
         <li class="nav-item">
