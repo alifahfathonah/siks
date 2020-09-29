@@ -15,6 +15,19 @@ class T004_siswa_model extends CI_Model
         parent::__construct();
     }
 
+
+    /**
+     * 1.3.2 menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     */
+    public function getById($idsiswa)
+    {
+        $this->db->select("idsiswa, nis, namasiswa, t004_siswa.idkelas, tahunajaran, byrspp, byrcatering, byrworksheet, kelas");
+        $this->db->from("t004_siswa");
+        $this->db->join("t003_kelas", "t004_siswa.idkelas = t003_kelas.idkelas");
+        $this->db->where($this->id, $idsiswa);
+        return $this->db->get()->row();
+    }
+
     // get all
     function get_all()
     {

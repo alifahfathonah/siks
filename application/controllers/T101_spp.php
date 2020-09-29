@@ -8,10 +8,67 @@ class T101_spp extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('T101_spp_model');
         $this->load->library('form_validation');
         $this->load->model('T004_siswa_model');
         $this->load->model('T003_kelas_model');
+    }
+
+    /**
+     * 1.1.1. menampilkan form search NIS/Nama Siswa
+     */
+    public function search()
+    {
+        $data = array(
+            'head'      => array('title' => urldecode($this->input->get('title', TRUE))),
+            'title'     => urldecode($this->input->get('title', TRUE)),
+            'urlDetail' => urldecode($this->input->get('urlDetail', TRUE)),
+            );
+        $this->load->view('t101_spp/t101_spp_search', $data);
+    }
+
+    /**
+     * 1.2.1. menampilkan daftar siswa sesuai NIS/Nama Siswa yang diinput oleh Operator
+     */
+    public function list($title, $urlDetail)
+    {
+        $q = $this->input->post('q', TRUE);
+        $t101_spp = $this->T101_spp_model->getAllByNisNama($q);
+        if ($t101_spp) {
+            $data = array(
+                't101_spp'  => $t101_spp,
+                'q'         => $q,
+                'head'      => array('title' => urldecode($title)),
+                'title'     => urldecode($title),
+                'urlDetail' => $urlDetail,
+                );
+            $this->load->view('t101_spp/t101_spp_list', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Data Siswa tidak ditemukan');
+            redirect(site_url('t101_spp/search?title=' . urldecode($title) . '&urlDetail='.$urlDetail));
+        }
+    }
+
+    /**
+     * 1.3.1. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     */
+    public function listBayar($idsiswa, $title, $urlDetail)
+    {
+        $t004_siswa = $this->T004_siswa_model->getById($idsiswa);
+        $t101_spp   = $this->T101_spp_model->getAllSppByNis($t004_siswa->nis);
+        if ($t004_siswa and $t101_spp) {
+            $data = array(
+                't004_siswa' => $t004_siswa,
+                't101_spp'   => $t101_spp,
+                'head'       => array('title' => urldecode($title)),
+                'title'      => urldecode($title),
+                );
+            $this->load->view('t101_spp/t101_spp_listbayar', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Data Siswa tidak ditemukan');
+            redirect(site_url('t101_spp/search?title=' . urldecode($title) . '&urlDetail='.$urlDetail));
+        }
     }
 
 
@@ -891,6 +948,40 @@ class T101_spp extends CI_Controller
         'kelas'    => $kelas,
       );
       $this->load->view("t101_spp/t101_spp_tgk_kls_xls", $data);
+    }
+
+    public function bayarSpp()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        // $start = intval($this->input->get('start'));
+
+        // if ($q <> '') {
+        //     $config['base_url'] = base_url() . 't101_spp/bayarSpp?q=' . urlencode($q);
+        //     $config['first_url'] = base_url() . 't101_spp/bayarSpp?q=' . urlencode($q);
+        // } else {
+        //     $config['base_url'] = base_url() . 't101_spp/bayarSpp';
+        //     $config['first_url'] = base_url() . 't101_spp/bayarSpp';
+        // }
+
+        // $config['per_page'] = 10000000;
+        // $config['page_query_string'] = TRUE;
+        // $config['total_rows'] = $this->T101_spp_model->total_rows_2($q);
+        // $t101_spp = $this->T101_spp_model->get_limit_data_2($config['per_page'], $start, $q);
+        $t101_spp = $this->T101_spp_model->getAllByNisNama($q);
+
+        // $this->load->library('pagination');
+        // $this->pagination->initialize($config);
+
+        $data = array(
+            't101_spp_data' => $t101_spp,
+            'q' => $q,
+            // 'pagination' => $this->pagination->create_links(),
+            // 'total_rows' => $config['total_rows'],
+            // 'start' => $start,
+            "head" => array("title" => "Pembayaran SPP"),
+            "title" => "Pembayaran SPP",
+        );
+        $this->load->view('t101_spp/t101_spp_bayar_spp', $data);
     }
 
 }

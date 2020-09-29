@@ -126,7 +126,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo site_url(); ?>t101_spp" class="nav-link">
+              <a href="<?php echo site_url(); ?>t101_spp/search?title=Pembayaran SPP&urlDetail=listBayar" class="nav-link">
                 <i class="fas fa-file-invoice nav-icon"></i>
                 <p>Pembayaran SPP</p>
               </a>
@@ -144,7 +144,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?php echo site_url(); ?>t101_spp/ubah_spp_siswa" class="nav-link">
+                  <a href="<?php echo site_url(); ?>t101_spp/search?title=Ubah SPP per Siswa&urlDetail=listUbah" class="nav-link">
                     <i class="far fa-dot-circle nav-icon"></i>
                     <p>per Siswa</p>
                   </a>
