@@ -17,6 +17,7 @@ class T101_spp_model extends CI_Model
 
     /**
      * 1.2.2. user: isi NIS/Nama Siswa pada textbox, klik button Search
+     * 2.2.2.
      */
     public function getAllByNisNama($q = NULL)
     {

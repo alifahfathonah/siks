@@ -145,7 +145,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?php echo site_url(); ?>t101_spp/search/Ubah SPP per Siswa/listUbah" class="nav-link">
+                  <a href="<?php echo site_url(); ?>t101_spp/search/Ubah SPP per Siswa/formUbah" class="nav-link">
                     <i class="far fa-dot-circle nav-icon"></i>
                     <p>per Siswa</p>
                   </a>

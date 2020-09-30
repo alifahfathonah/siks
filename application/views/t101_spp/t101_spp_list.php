@@ -1,6 +1,7 @@
 <?php
 /**
  * 1.2.3. user: isi NIS/Nama Siswa pada textbox, klik button Search
+ * 2.2.3.
  */
 ?>
 <?php $this->load->view("template/head", $head); ?>

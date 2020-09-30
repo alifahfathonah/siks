@@ -21,6 +21,13 @@ class T101_spp extends CI_Controller
      */
     public function search($title, $urlDetail)
     {
+        /**
+         * dipikirkan nanti2 saat ada waktu panjang untuk upgrade versi
+         */
+        // $this->session->set_userdata('bayarSppTitle', $title);
+        // $this->session->set_userdata('bayarSppUrlDetail', $urlDetail);
+        // $this->session->set_userdata('ubahSppPerSiswaTitle', $title);
+        // $this->session->set_userdata('ubahSppPerSiswaUrlDetail', $urlDetail);
         $data = array(
             'head'      => array('title' => urldecode($title)),
             'title'     => urldecode($title),
@@ -115,6 +122,43 @@ class T101_spp extends CI_Controller
             );
         $this->load->view("t101_spp/t101_spp_invoice", $data);
     }
+
+    /**
+     * 2.3.1. user: klik link Proses untuk menampilkan detail siswa
+     */
+     public function formUbah($idsiswa) // $id = idspp
+     {
+         $row = $this->T101_spp_model->get_by_idsiswa($idsiswa);
+         $data_siswa = $this->T004_siswa_model->get_by_id($idsiswa); // echo pre($data_siswa);
+         $row_bulan2 = $this->T101_spp_model->get_bulan_2($idsiswa);
+
+         if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('t101_spp/update_2_action'),
+             	'idspp' => set_value('idspp', $row->idspp),
+                'idsiswa' => set_value('idsiswa', $row->idsiswa),
+                'jatuhtempo' => set_value('jatuhtempo', $row->jatuhtempo),
+                'bulan' => set_value('bulan', $row->bulan),
+                'nobayar' => set_value('nobayar', $row->nobayar),
+                'tglbayar' => set_value('tglbayar', $row->tglbayar),
+                'byrspp' => set_value('byrspp', $row->byrspp),
+                'byrcatering' => set_value('byrcatering', $row->byrcatering),
+                'byrworksheet' => set_value('byrworksheet', $row->byrworksheet),
+                'ket' => set_value('ket', $row->ket),
+                'idadmin' => set_value('idadmin', $row->idadmin),
+                "head" => array("title" => "Ubah SPP per Siswa"),
+                "title" => "Ubah SPP per Siswa",
+                'data_siswa' => $data_siswa,
+                //'q' => $q,
+                'row_bulan2' => $row_bulan2,
+                );
+            $this->load->view('t101_spp/t101_spp_form_2', $data);
+         } else {
+             $this->session->set_flashdata('message', 'Record Not Found');
+             redirect(site_url('t101_spp/ubah_spp_siswa'));
+         }
+     }
 
     // cetak tunggakan ke xls
     public function tunggakan_tgl_xls()
