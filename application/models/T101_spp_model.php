@@ -518,8 +518,8 @@ class T101_spp_model extends CI_Model
     public function getTotalByr()
     {
         $this->db->select('sum(byrspp) as byrspp, sum(byrcatering) as byrcatering, sum(byrworksheet) as byrworksheet');
-        // $this->db->where('tglbayar', date('Y-m-d'));
-        $this->db->where('tglbayar', date('2020-08-14'));
+        $this->db->where('tglbayar', date('Y-m-d'));
+        // $this->db->where('tglbayar', date('2020-08-14'));
         return $this->db->get($this->table)->row();
     }
 }
