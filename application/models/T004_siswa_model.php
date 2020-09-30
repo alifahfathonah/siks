@@ -17,7 +17,8 @@ class T004_siswa_model extends CI_Model
 
 
     /**
-     * 1.3.2 menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     * 1.3.2. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     * 1.5.2. Admin: klik button Cetak
      */
     public function getById($idsiswa)
     {

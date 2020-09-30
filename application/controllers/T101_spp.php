@@ -18,12 +18,12 @@ class T101_spp extends CI_Controller
     /**
      * 1.1.1. menampilkan form search NIS/Nama Siswa
      */
-    public function search()
+    public function search($title, $urlDetail)
     {
         $data = array(
-            'head'      => array('title' => urldecode($this->input->get('title', TRUE))),
-            'title'     => urldecode($this->input->get('title', TRUE)),
-            'urlDetail' => urldecode($this->input->get('urlDetail', TRUE)),
+            'head'      => array('title' => urldecode($title)),
+            'title'     => urldecode($title),
+            'urlDetail' => $urlDetail,
             );
         $this->load->view('t101_spp/t101_spp_search', $data);
     }
@@ -46,17 +46,17 @@ class T101_spp extends CI_Controller
             $this->load->view('t101_spp/t101_spp_list', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Siswa tidak ditemukan');
-            redirect(site_url('t101_spp/search?title=' . urldecode($title) . '&urlDetail='.$urlDetail));
+            redirect(site_url('t101_spp/search/'.urldecode($title).'/'.$urlDetail));
         }
     }
 
     /**
      * 1.3.1. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
      */
-    public function listBayar($idsiswa, $title, $urlDetail)
+    public function listBayar($idsiswa, $title, $urlDetail, $q)
     {
         $t004_siswa = $this->T004_siswa_model->getById($idsiswa);
-        $t101_spp   = $this->T101_spp_model->getAllSppByNis($t004_siswa->nis);
+        $t101_spp   = $this->T101_spp_model->getAllByNis($t004_siswa->nis);
         // echo pre($t101_spp); die();
         if ($t004_siswa and $t101_spp) {
             $data = array(
@@ -64,6 +64,8 @@ class T101_spp extends CI_Controller
                 't101_spp'   => $t101_spp,
                 'head'       => array('title' => urldecode($title)),
                 'title'      => urldecode($title),
+                'urlDetail'  => $urlDetail,
+                'q'          => $q,
                 );
             $this->load->view('t101_spp/t101_spp_listbayar', $data);
         } else {
@@ -73,9 +75,9 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.4.1 Admin klik button Bayar
+     * 1.4.1. Admin klik button Bayar
      */
-    public function bayar($idSpp, $idsiswa, $title) //, $q, $start)
+    public function bayar($idSpp, $idsiswa, $title, $urlDetail, $q) //, $q, $start)
     {
         //membuat nomor bayar
         $today = date("ymd");
@@ -95,7 +97,21 @@ class T101_spp extends CI_Controller
         //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
         //redirect("t101_spp?q=".$q);
         // listBayar($idsiswa, $title, $urlDetail)
-        redirect('t101_spp/listBayar/'.$idsiswa.'/'.$title.'/'.'listBayar');
+        redirect('t101_spp/'.$urlDetail.'/'.$idsiswa.'/'.$title.'/'.$urlDetail.'/'.$q);
+    }
+
+    /**
+     * 1.5.1. Admin: klik button Cetak
+     */
+    public function cetak($idSpp, $idsiswa)
+    {
+        $t004_siswa = $this->T004_siswa_model->getById($idsiswa);
+        $t101_spp = $this->T101_spp_model->getById($idSpp);
+        $data = array(
+            't004_siswa' => $t004_siswa,
+            't101_spp'   => $t101_spp,
+            );
+        $this->load->view("t101_spp/t101_spp_invoice", $data);
     }
 
     // cetak tunggakan ke xls
@@ -404,27 +420,6 @@ class T101_spp extends CI_Controller
 
         $this->load->view('t101_spp/t101_spp_list', $data);
     }
-
-
-    // cetak bukti pembayaran
-    public function cetak()
-    {
-        if (!$this->ion_auth->logged_in()) {
-            redirect('/auth', 'refresh');
-        }
-
-        $q = urldecode($this->input->get('q', TRUE));
-        $dataSiswa = $this->T101_spp_model->getSiswa($q);
-        $idSpp = urldecode($this->input->get('idSpp', TRUE));
-        $aSpp = $this->T101_spp_model->get_by_id($idSpp);
-        $aSiswa = $this->T101_spp_model->getSiswa($q);
-        $data = array(
-          "aSpp" => $aSpp,
-          "aSiswa" => $aSiswa
-        );
-        $this->load->view("t101_spp/t101_spp_invoice", $data);
-    }
-
 
     // cetak laporan ke layar
     public function laporan()

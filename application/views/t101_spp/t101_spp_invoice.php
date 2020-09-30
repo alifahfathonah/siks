@@ -32,10 +32,10 @@
 	<?php
 		//$qSiswa=mysqli_query($konek, "SELECT * FROM siswa WHERE nis='$_GET[nis]'");
 		//$ds = mysqli_fetch_array($qSiswa);
-    $ds = $aSiswa;
+    $ds = $t004_siswa;
 		//$sqlBayar = mysqli_query($konek, "SELECT spp.*,siswa.nis,siswa.namasiswa,b.kelas FROM spp INNER JOIN siswa ON spp.idsiswa=siswa.idsiswa left join walikelas b on siswa.idkelas = b.idkelas WHERE idspp='$_GET[id]' ORDER BY nobayar ASC");
 		//$d=mysqli_fetch_array($sqlBayar);
-    $d = $aSpp;
+    $d = $t101_spp;
 		$total = 0;
 		$total +=$d['byrspp']+$d['byrcatering']+$d['byrworksheet'];
 	?>
@@ -43,7 +43,7 @@
 		<tr>
 			<td width="200">Nama Siswa</td>
 			<td width="5">:</td>
-			<td width="350"><?php echo $ds[0]['namasiswa']; ?></td>
+			<td width="350"><?php echo $ds->namasiswa; ?></td>
 			<td width="200">No. Bayar</td>
 			<td width="5">:</td>
 			<td width="250"><?php echo $d['nobayar']; ?></td>
@@ -51,7 +51,7 @@
 		<tr>
 			<td width="200">No Induk</td>
 			<td width="5">:</td>
-			<td width="350"><?php echo $ds[0]['nis']; ?></td>
+			<td width="350"><?php echo $ds->nis; ?></td>
 			<td width="200">Tanggal Bayar</td>
 			<td width="5">:</td>
 			<td width="250"><?php echo date_format(date_create($d['tglbayar']), "d-m-Y"); ?></td>
@@ -59,7 +59,7 @@
 		<tr>
 			<td width="200">Kelas</td>
 			<td width="5">:</td>
-			<td width="250"><?php echo $ds[0]['kelas']; ?></td>
+			<td width="250"><?php echo $ds->kelas; ?></td>
 			<td width="200">Periode</td>
 			<td width="5">:</td>
 			<td width="250"><?php echo $d['bulan']; ?></td>

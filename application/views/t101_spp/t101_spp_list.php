@@ -61,7 +61,7 @@
                             <?php
                             // echo anchor(site_url('t101_spp/update_2/'.$t101_spp->idspp),'Update');
                             // echo anchor(site_url('t101_spp/update_2/'.$t101_spp_row->idsiswa),'Proses');
-                            echo anchor(site_url('t101_spp/'.$urlDetail.'/'.$t101_spp_row->idsiswa.'/'.$title.'/'.$urlDetail), 'Proses');
+                            echo anchor(site_url('t101_spp/'.$urlDetail.'/'.$t101_spp_row->idsiswa.'/'.$title.'/'.$urlDetail.'/'.$q), 'Proses');
                             ?>
                         </td>
                     </tr>
@@ -69,6 +69,11 @@
                     }
                     ?>
                 </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <?php echo anchor(site_url('t101_spp/search/'.$title.'/'.$urlDetail), 'Back', 'class="btn btn-primary"'); ?>
+                    </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
         </section>

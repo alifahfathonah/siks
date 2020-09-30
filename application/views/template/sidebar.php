@@ -126,7 +126,8 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo site_url(); ?>t101_spp/search?title=Pembayaran SPP&urlDetail=listBayar" class="nav-link">
+              <!-- <a href="<?php //echo site_url(); ?>t101_spp/search?title=Pembayaran SPP&urlDetail=listBayar" class="nav-link"> -->
+              <a href="<?php echo site_url(); ?>t101_spp/search/Pembayaran SPP/listBayar" class="nav-link">
                 <i class="fas fa-file-invoice nav-icon"></i>
                 <p>Pembayaran SPP</p>
               </a>

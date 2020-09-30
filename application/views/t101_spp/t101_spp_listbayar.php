@@ -60,6 +60,26 @@
                         </tr>
                     </table>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <a href="#" class="btn btn-primary">Total Record : <?php //echo $total_rows ?></a> -->
+                        <?php //echo anchor(site_url('t101_spp/list'), 'Back', 'class="btn btn-primary"'); ?>
+                        <form action="<?php echo site_url('t101_spp/list/'.$title.'/'.$urlDetail); ?>" class="form-inline" method="post">
+                            <input type="hidden" name="q" value="<?php echo $q; ?>">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Back</button>
+                            </span>
+                        </form>
+                    </div>
+                    <!-- <div class="col-md-6 text-right">
+                        <?php //echo $pagination ?>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
                 <div class="page-header">
                     <h5>Daftar Tagihan SPP Siswa</h5>
                 </div>
@@ -93,11 +113,11 @@
                         <td><?php echo $row->ket ?></td>
                         <td align="left">
                             <?php if ($row->nobayar == '') { ?>
-                            <a href='<?php echo site_url('t101_spp/bayar/'.$row->idspp.'/'.$t004_siswa->idsiswa.'/'.$title); ?>' class='btn btn-warning btn-sm'>Bayar</a>
+                            <a href='<?php echo site_url('t101_spp/bayar/'.$row->idspp.'/'.$row->idsiswa.'/'.$title.'/'.$urlDetail.'/'.$q); ?>' class='btn btn-warning btn-sm'>Bayar</a>
                             <!-- |
                             <a href='<?php //echo site_url('t101_spp/update/'.$t101_spp->idspp."/".$q); ?>' class='btn btn-warning btn-sm'>Update</a> -->
                             <?php } else { ?>
-                            <a href='<?php echo site_url('t101_spp/cetak?idSpp='.$row->idspp); ?>' class='btn btn-info btn-sm' target='blank'>Cetak</a>
+                            <a href='<?php echo site_url('t101_spp/cetak/'.$row->idspp.'/'.$row->idsiswa.'/'.$title); ?>' class='btn btn-info btn-sm' target='blank'>Cetak</a>
                             <?php } ?>
                         </td>
                     </tr>

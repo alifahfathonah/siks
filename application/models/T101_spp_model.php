@@ -7,10 +7,10 @@ class T101_spp_model extends CI_Model
 {
 
     public $table = 't101_spp';
-    public $id = 'idspp';
+    public $id    = 'idspp';
     public $order = 'DESC';
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
@@ -61,7 +61,7 @@ class T101_spp_model extends CI_Model
     /**
      * 1.3.3. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
      */
-    public function getAllSppByNis($nis)
+    public function getAllByNis($nis)
     {
         $s = "select idsiswa from t004_siswa where nis = '".$nis."'";
         $query = $this->db->query($s);
@@ -90,13 +90,22 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.4.3.
+     * 1.4.3. Admin: klik button Bayar
      */
     function bayar($nextNoBayar, $tglBayar, $admin, $idSpp)
     {
         //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
         $s = "update t101_spp set nobayar = '$nextNoBayar', tglbayar = '$tglBayar', ket = 'LUNAS', idadmin = '$admin' where idspp = '$idSpp'";
         $this->db->query($s);
+    }
+
+    /**
+     * 1.5.3. Admin: klik button Cetak
+     */
+    function getById($id)
+    {
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row_array();
     }
 
     // get all
