@@ -57,6 +57,7 @@ class T101_spp extends CI_Controller
     {
         $t004_siswa = $this->T004_siswa_model->getById($idsiswa);
         $t101_spp   = $this->T101_spp_model->getAllSppByNis($t004_siswa->nis);
+        // echo pre($t101_spp); die();
         if ($t004_siswa and $t101_spp) {
             $data = array(
                 't004_siswa' => $t004_siswa,
@@ -71,6 +72,31 @@ class T101_spp extends CI_Controller
         }
     }
 
+    /**
+     * 1.4.1 Admin klik button Bayar
+     */
+    public function bayar($idSpp, $idsiswa, $title) //, $q, $start)
+    {
+        //membuat nomor bayar
+        $today = date("ymd");
+        $data = $this->T101_spp_model->getMaxNoBayar($idSpp);
+        $lastNoBayar = $data['last'];
+        $lastNoUrut = substr($lastNoBayar, 6, 4);
+        $nextNoUrut = $lastNoUrut + 1;
+        $nextNoBayar = $today.sprintf('%04s', $nextNoUrut);
+
+        //tanggal Bayar
+        $tglBayar = date('Y-m-d');
+
+        //id admin
+        //$admin = $_SESSION['id'];
+        $admin = $this->session->userdata("user_id");
+        $this->T101_spp_model->bayar($nextNoBayar, $tglBayar, $admin, $idSpp);
+        //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
+        //redirect("t101_spp?q=".$q);
+        // listBayar($idsiswa, $title, $urlDetail)
+        redirect('t101_spp/listBayar/'.$idsiswa.'/'.$title.'/'.'listBayar');
+    }
 
     // cetak tunggakan ke xls
     public function tunggakan_tgl_xls()
@@ -456,34 +482,6 @@ class T101_spp extends CI_Controller
       );
       $this->load->view("t101_spp/t101_spp_laporan_xls", $data);
     }
-
-
-    // proses pembayaran spp
-    public function bayar($idSpp, $q, $start)
-    {
-        if (!$this->ion_auth->logged_in()) {
-            redirect('/auth', 'refresh');
-        }
-
-        //membuat nomor bayar
-        $today = date("ymd");
-        $data = $this->T101_spp_model->getMaxNoBayar($idSpp);
-        $lastNoBayar = $data['last'];
-        $lastNoUrut = substr($lastNoBayar, 6, 4);
-        $nextNoUrut = $lastNoUrut + 1;
-        $nextNoBayar = $today.sprintf('%04s', $nextNoUrut);
-
-        //tanggal Bayar
-        $tglBayar = date('Y-m-d');
-
-        //id admin
-        //$admin = $_SESSION['id'];
-        $admin = $this->session->userdata("user_id");
-        $this->T101_spp_model->bayar($nextNoBayar, $tglBayar, $admin, $idSpp);
-        //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
-        redirect("t101_spp?q=".$q);
-    }
-
 
     // read
     public function read($id)

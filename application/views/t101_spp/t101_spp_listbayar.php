@@ -93,7 +93,7 @@
                         <td><?php echo $row->ket ?></td>
                         <td align="left">
                             <?php if ($row->nobayar == '') { ?>
-                            <a href='<?php echo site_url('t101_spp/bayar/'.$row->idsppt); ?>' class='btn btn-warning btn-sm'>Bayar</a>
+                            <a href='<?php echo site_url('t101_spp/bayar/'.$row->idspp.'/'.$t004_siswa->idsiswa.'/'.$title); ?>' class='btn btn-warning btn-sm'>Bayar</a>
                             <!-- |
                             <a href='<?php //echo site_url('t101_spp/update/'.$t101_spp->idspp."/".$q); ?>' class='btn btn-warning btn-sm'>Update</a> -->
                             <?php } else { ?>

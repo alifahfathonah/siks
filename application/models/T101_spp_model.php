@@ -79,6 +79,26 @@ class T101_spp_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    /**
+     * 1.4.2. Admin klik button Bayar
+     */
+    public function getMaxNoBayar($idSpp)
+    {
+        $today = date("ymd");
+        $q = $this->db->query("select max(nobayar) as last from t101_spp where nobayar like '$today%'");
+        return $q->row_array();
+    }
+
+    /**
+     * 1.4.3.
+     */
+    function bayar($nextNoBayar, $tglBayar, $admin, $idSpp)
+    {
+        //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
+        $s = "update t101_spp set nobayar = '$nextNoBayar', tglbayar = '$tglBayar', ket = 'LUNAS', idadmin = '$admin' where idspp = '$idSpp'";
+        $this->db->query($s);
+    }
+
     // get all
     function get_all()
     {
@@ -175,22 +195,6 @@ class T101_spp_model extends CI_Model
     {
         $q = $this->db->query("select a.*, b.kelas from t004_siswa a left join t003_kelas b on a.idkelas = b.idkelas where idsiswa = '".$idSiswa."' and tahunajaran = '".$this->session->userdata("tahunajaran")."'");
         return $q->row();
-    }
-
-    //
-    function getMaxNoBayar($idSpp)
-    {
-        $today = date("ymd");
-        $q = $this->db->query("select max(nobayar) as last from t101_spp where nobayar like '$today%'");
-        return $q->row_array();
-    }
-
-    //
-    function bayar($nextNoBayar, $tglBayar, $admin, $idSpp)
-    {
-        //mysqli_query($konek, "Update spp SET nobayar='$nextNoBayar',tglbayar='$tglBayar',ket='LUNAS',idadmin='$admin' WHERE idspp='$idspp'");
-        $s = "update t101_spp set nobayar = '$nextNoBayar', tglbayar = '$tglBayar', ket = 'LUNAS', idadmin = '$admin' where idspp = '$idSpp'";
-        $this->db->query($s);
     }
 
     //
