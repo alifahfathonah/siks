@@ -1,6 +1,6 @@
 <?php
 /**
- * 1.2.3. menampilkan daftar siswa sesuai NIS/Nama Siswa yang diinput oleh Operator
+ * 1.2.3. user: isi NIS/Nama Siswa pada textbox, klik button Search
  */
 ?>
 <?php $this->load->view("template/head", $head); ?>

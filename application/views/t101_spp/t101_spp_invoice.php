@@ -1,6 +1,6 @@
 <?php
 /**
- * 1.5.4. Admin: klik button Cetak
+ * 1.5.4. user: klik button Cetak
  */
 ?>
 <?php

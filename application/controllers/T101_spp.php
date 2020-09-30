@@ -16,7 +16,8 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.1.1. menampilkan form search NIS/Nama Siswa
+     * 1.1.1. user: klik menu Transaksi -> Pembayaran SPP
+     * 2.1.1. user: klik menu Transaksi -> Ubah Spp -> per Siswa
      */
     public function search($title, $urlDetail)
     {
@@ -29,7 +30,8 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.2.1. menampilkan daftar siswa sesuai NIS/Nama Siswa yang diinput oleh Operator
+     * 1.2.1. user: isi NIS/Nama Siswa pada textbox, klik button Search
+     * 2.2.1.
      */
     public function list($title, $urlDetail)
     {
@@ -51,7 +53,7 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.3.1. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     * 1.3.1. user: klik link Proses untuk menampilkan detail siswa
      */
     public function listBayar($idsiswa, $title, $urlDetail, $q)
     {
@@ -75,7 +77,7 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.4.1. Admin klik button Bayar
+     * 1.4.1. user: klik button Bayar
      */
     public function bayar($idSpp, $idsiswa, $title, $urlDetail, $q) //, $q, $start)
     {
@@ -101,7 +103,7 @@ class T101_spp extends CI_Controller
     }
 
     /**
-     * 1.5.1. Admin: klik button Cetak
+     * 1.5.1. user: klik button Cetak
      */
     public function cetak($idSpp, $idsiswa)
     {

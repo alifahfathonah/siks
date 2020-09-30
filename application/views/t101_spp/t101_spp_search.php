@@ -1,6 +1,7 @@
 <?php
 /**
- * 1.1.2. menampilkan form search NIS/Nama Siswa
+ * 1.1.2. user: klik menu Transaksi -> Pembayaran SPP
+ * 2.1.2. menampilkan form search NIS/Nama Siswa
  */
 ?>
 <?php $this->load->view("template/head", $head); ?>

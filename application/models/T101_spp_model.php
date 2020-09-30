@@ -16,7 +16,7 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.2.2. menampilkan daftar siswa sesuai NIS/Nama Siswa yang diinput oleh Operator
+     * 1.2.2. user: isi NIS/Nama Siswa pada textbox, klik button Search
      */
     public function getAllByNisNama($q = NULL)
     {
@@ -59,7 +59,7 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.3.3. menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+     * 1.3.3. user: klik link Proses untuk menampilkan detail siswa
      */
     public function getAllByNis($nis)
     {
@@ -80,7 +80,7 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.4.2. Admin klik button Bayar
+     * 1.4.2. user: klik button Bayar
      */
     public function getMaxNoBayar($idSpp)
     {
@@ -90,7 +90,7 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.4.3. Admin: klik button Bayar
+     * 1.4.3. user: klik button Bayar
      */
     function bayar($nextNoBayar, $tglBayar, $admin, $idSpp)
     {
@@ -100,7 +100,7 @@ class T101_spp_model extends CI_Model
     }
 
     /**
-     * 1.5.3. Admin: klik button Cetak
+     * 1.5.3. user: klik button Cetak
      */
     function getById($id)
     {

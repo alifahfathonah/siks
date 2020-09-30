@@ -1,6 +1,7 @@
 <?php
 /**
- * 1.3.4 menampilkan detail siswa sesuai NIS/Nama Siswa yang dipilih oleh Operator
+ * 1.3.4. user: klik link Proses untuk menampilkan detail siswa
+ * 1.4.4. user: klik button Bayar
  */
 ?>
 <?php $this->load->view("template/head", $head); ?>
