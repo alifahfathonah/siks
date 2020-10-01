@@ -65,7 +65,7 @@
                     <div class="col-md-6">
                         <!-- <a href="#" class="btn btn-primary">Total Record : <?php //echo $total_rows ?></a> -->
                         <?php //echo anchor(site_url('t101_spp/list'), 'Back', 'class="btn btn-primary"'); ?>
-                        <form action="<?php echo site_url('t101_spp/list/'.$title.'/'.$urlDetail); ?>" class="form-inline" method="post">
+                        <form action="<?php echo site_url('t101_spp/listSiswa/'.$title.'/'.$urlDetail); ?>" class="form-inline" method="post">
                             <input type="hidden" name="q" value="<?php echo $q; ?>">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" type="submit">Back</button>

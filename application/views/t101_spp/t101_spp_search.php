@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <div class="row" style="margin-bottom: 10px">
                     <div class="col">
-                        <form action="<?php echo site_url('t101_spp/list/'.$title.'/'.$urlDetail); ?>" class="form-inline" method="post">
+                        <form action="<?php echo site_url('t101_spp/listSiswa/'.$title.'/'.$urlDetail); ?>" class="form-inline" method="post">
                             <div class="input-group">
                                 <label class="control-label" for="nis">NIS / Nama Siswa : &nbsp;</label>
                                 <input type="text" class="form-control" name="q" value="">&nbsp;

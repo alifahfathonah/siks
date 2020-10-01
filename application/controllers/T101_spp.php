@@ -40,7 +40,7 @@ class T101_spp extends CI_Controller
      * 1.2.1. user: isi NIS/Nama Siswa pada textbox, klik button Search
      * 2.2.1.
      */
-    public function list($title, $urlDetail)
+    public function listSiswa($title, $urlDetail)
     {
         $q = $this->input->post('q', TRUE);
         $t101_spp = $this->T101_spp_model->getAllByNisNama($q);
